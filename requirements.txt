@@ -1,0 +1,7 @@
+streamlit
+langchain
+langchain-groq
+langchain-core
+pandas
+python-dotenv
+regex
