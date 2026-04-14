@@ -79,65 +79,6 @@ language_options = [
     "Hinglish (Hindi + English)",
     "Spanglish (Spanish + English)",
 ]
-topic_options = sorted([
-    # Career & Work
-    "Job Search", "Career Growth", "Resume Tips", "Interview Preparation",
-    "Salary Negotiation", "Remote Work", "Work-Life Balance", "Productivity",
-    "Leadership", "Management", "Team Building", "Workplace Culture",
-    "Freelancing", "Side Hustle", "Entrepreneurship", "Startup Life",
-    "Business Strategy", "Networking", "Personal Branding", "Public Speaking",
-
-    # Technology
-    "Artificial Intelligence", "Machine Learning", "Deep Learning",
-    "Data Science", "Python Programming", "Web Development", "Mobile Apps",
-    "Cloud Computing", "Cybersecurity", "Blockchain", "Web3", "Metaverse",
-    "DevOps", "Open Source", "Software Engineering", "System Design",
-    "Prompt Engineering", "ChatGPT", "Automation", "IoT", "AR / VR",
-
-    # Business & Finance
-    "Investing", "Stock Market", "Cryptocurrency", "Personal Finance",
-    "Budgeting", "Passive Income", "Real Estate", "E-commerce",
-    "Digital Marketing", "SEO", "Content Marketing", "Social Media Marketing",
-    "Sales", "Customer Success", "Product Management", "SaaS",
-    "Venture Capital", "Fundraising", "Business Growth", "Marketing Strategy",
-
-    # Education & Learning
-    "Online Learning", "Self Improvement", "Reading Habits", "Study Tips",
-    "Critical Thinking", "Problem Solving", "Creativity", "Memory & Focus",
-    "Skill Development", "Certifications", "Higher Education", "Teaching",
-
-    # Health & Wellness
-    "Mental Health", "Stress Management", "Mindfulness", "Meditation",
-    "Fitness", "Nutrition", "Sleep", "Burnout", "Anxiety", "Depression Awareness",
-    "Work Stress", "Therapy", "Emotional Intelligence", "Happiness",
-
-    # Lifestyle & Personal
-    "Morning Routine", "Habits", "Discipline", "Motivation", "Goal Setting",
-    "Time Management", "Minimalism", "Travel", "Food", "Relationships",
-    "Parenting", "Friendship", "Loneliness", "Confidence", "Self Love",
-
-    # Society & Culture
-    "Gender Equality", "Diversity & Inclusion", "Social Justice",
-    "Climate Change", "Sustainability", "Politics", "Human Rights",
-    "Immigration", "Poverty", "Education System", "Healthcare System",
-    "Media & Journalism", "Cancel Culture", "Gen Z vs Millennials",
-
-    # Science & Innovation
-    "Space Exploration", "Quantum Computing", "Biotechnology", "Genetics",
-    "Neuroscience", "Psychology", "Philosophy", "History", "Future of Work",
-    "Robotics", "Electric Vehicles", "Renewable Energy", "Nuclear Energy",
-
-    # Creative & Arts
-    "Writing", "Storytelling", "Photography", "Graphic Design", "Music",
-    "Film & Cinema", "Gaming", "Animation", "Fashion", "Architecture",
-    "Poetry", "Art", "Content Creation", "YouTube", "Podcasting",
-
-    # Trending & Viral
-    "Influencer Culture", "Organic Growth", "Viral Content", "LinkedIn Tips",
-    "Twitter / X", "Instagram Growth", "Online Dating", "Hustle Culture",
-    "Quiet Quitting", "Great Resignation", "AI replacing Jobs",
-    "Future of Education", "Future of Healthcare", "Digital Nomad Life",
-])
 
 tone_options = [
     # Authority & Thought Leadership
@@ -309,7 +250,30 @@ def apply_styles():
         margin-bottom: 1.1rem;
     }
 
-    /* ── Selectbox ── */
+    /* ── Text input ── */
+    .stTextInput > div > div > input {
+        background-color: #1c1e2e !important;
+        border: 1px solid #2e3148 !important;
+        border-radius: 10px !important;
+        color: #d4d7e8 !important;
+        font-size: 0.93rem !important;
+        transition: border-color 0.2s, box-shadow 0.2s !important;
+        padding: 0.55rem 0.85rem !important;
+    }
+    .stTextInput > div > div > input:focus {
+        border-color: #7c6af7 !important;
+        box-shadow: 0 0 0 3px rgba(124,106,247,0.1) !important;
+    }
+    .stTextInput > div > div > input::placeholder {
+        color: #3e4460 !important;
+    }
+    .stTextInput label {
+        color: #7a80a0 !important;
+        font-size: 0.77rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+    }
     .stSelectbox > div > div {
         background-color: #1c1e2e !important;
         border: 1px solid #2e3148 !important;
@@ -508,13 +472,13 @@ def main():
 
     col1, col2 = st.columns(2)
     with col1:
-        selected_tag = st.selectbox("Topic", options=topic_options)
+        selected_tag = st.text_input("Topic", placeholder="e.g. Burnout at work, AI replacing jobs, Morning routines...")
         selected_length = st.selectbox("Length", options=length_options)
     with col2:
         selected_tone = st.selectbox("Tone", options=tone_options)
         selected_language = st.selectbox("Language", options=language_options)
 
-    generate_clicked = st.button("Generate Post")
+    generate_clicked = st.button("Generate Post", disabled=not selected_tag.strip())
     st.markdown('</div>', unsafe_allow_html=True)
 
     if generate_clicked:

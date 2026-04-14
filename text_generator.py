@@ -107,12 +107,15 @@ HUMAN WRITING RULES:
 HASHTAG RULES:
 - After the post body, add exactly one blank line
 - Then add 5 to 8 relevant hashtags on a single line
-- Hashtags must be specific to the topic "{tag}" and the content of the post
-- Mix broad hashtags (#Career) with specific ones (#JobSearchTips)
-- No generic filler hashtags like #Life #Good #Post
+- Hashtags must directly relate to the topic "{tag}" and the specific content of the post
+- Mix broad hashtags with specific niche ones
+- No generic filler hashtags like #Life #Good #Post #Motivation unless they are genuinely relevant
 
 POST REQUIREMENTS:
 1) Topic: {tag}
+   - Treat this as the user's exact intent. If it's a phrase, a question, or a sentence — honor it fully.
+   - Extract the core theme, emotion, and angle from it and build the entire post around that.
+   - Do not generalize or water it down. Stay specific to what the user wrote.
 2) Length: {length_str}
 3) Language: {language}. Write the ENTIRE post in {language}. Do not mix languages unless it is a mixed dialect like Hinglish or Spanglish.
 4) Tone: {tone_instruction}
