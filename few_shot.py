@@ -10,9 +10,13 @@ class FewShotPosts:
     def load_posts(self, file_path):
         with open(file_path, encoding="utf-8") as f:
             posts = json.load(f)
+            # Sanitize surrogate characters that break PyArrow on Python 3.14
+            for post in posts:
+                for key, val in post.items():
+                    if isinstance(val, str):
+                        post[key] = val.encode('utf-8', 'surrogatepass').decode('utf-8', 'replace')
             self.df = pd.json_normalize(posts)
             self.df['length'] = self.df['line_count'].apply(self.categorize_length)
-            # collect unique tags
             all_tags = self.df['tags'].apply(lambda x: x).sum()
             self.unique_tags = list(set(all_tags))
 
